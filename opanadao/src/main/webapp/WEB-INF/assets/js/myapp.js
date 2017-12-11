@@ -21,6 +21,9 @@ $(function () {
         case 'Sobre Nós':
             $('#sobrenos').addClass('active');
             break;
+        case 'Manage Products':
+            $('#manageProducts').addClass('active');
+            break;
         case 'Contactos':
             $('#contactos').addClass('active');
             break;
@@ -97,4 +100,11 @@ if ($table.length) {
             }
         ]
     });
+}
+
+var $alert = $('.alert');
+if($alert.length) {
+    setTimeout(function(){
+        $alert.fadeOut('slow');
+    },3000);
 }

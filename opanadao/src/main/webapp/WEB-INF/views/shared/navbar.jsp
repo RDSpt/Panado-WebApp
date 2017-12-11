@@ -18,6 +18,9 @@
                 <li class="nav-item" id="contactos">
                     <a class="nav-link" href="${contextRoot}/contactos">Contactos</a>
                 </li>
+                <li class="nav-item" id="manageProducts">
+                    <a class="nav-link" href="${contextRoot}/gerir/produtos">Gerir Produtos</a>
+                </li>
             </ul>
         </div>
     </div>

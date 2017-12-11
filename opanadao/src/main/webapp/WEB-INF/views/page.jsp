@@ -62,6 +62,9 @@
         <c:if test="${userClickContactos == true}">
             <%@include file="contactos.jsp" %>
         </c:if>
+        <c:if test="${userClickManageProducts == true}">
+            <%@include file="manageProducts.jsp" %>
+        </c:if>
 
     </div>
 
