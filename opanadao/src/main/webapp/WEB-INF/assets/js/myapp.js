@@ -45,7 +45,7 @@ if ($table.length) {
     }
 
     $table.DataTable({
-        lengthMenu: [[3, 5, 10, -1], ['3 Records', '5 Records', '10 Records', 'Todos']],
+        lengthMenu: [[3, 5, 10, -1], ['3', '5', '10', 'Todos']],
         pageLength: 5,
         ajax: {
             url: jsonUrl,
@@ -54,18 +54,28 @@ if ($table.length) {
         columns: [
             {
                 bSortable: false,
-                data:'code',
-                mRender: function (data,type, row) {
-                    return "<img class='dataTableImg' src='"+window.contextRoot+"/resources/images/produtos/"+data+".jpg'/>"
+                data: 'code',
+                mRender: function (data, type, row) {
+                    return "<img class='dataTableImg' src='" + window.contextRoot + "/resources/images/produtos/" + data + ".jpg'/>"
                 }
             },
             {
                 data: 'name'
             },
+
             {
                 data: 'price',
                 mRender: function (data, type, row) {
                     return data + ' €';
+                }
+            },
+            {
+                data: 'quantity',
+                mRender: function (data, type, row) {
+                    if (data < 1) {
+                        return "<span style='red'> Out of Stock!</span>";
+                    }
+                    return data;
                 }
             },
             {
@@ -74,7 +84,14 @@ if ($table.length) {
                 mRender: function (data, type, row) {
                     var str = "";
                     str += " <a class = 'btn btn-primary' href='" + window.contextRoot + "/produtos/produto_desc/" + data + "/'><i class='fa fa-eye fa-lg' aria-hidden='true'></i></a> &nbsp; ";
-                    str += " <a class = 'btn btn-primary' href='" + window.contextRoot + "/cart/add/" + data + "/'><i class='fa fa-cart-plus fa-lg' aria-hidden='true'></i></a>";
+
+                    if (row.quantity < 1) {
+                        str += " <a class = 'btn btn-danger disabled' href='javascript:void(0);'><i class='fa fa-cart-plus fa-lg' aria-hidden='true'></i></a>";
+                    } else {
+
+                        str += " <a class = 'btn btn-primary' href='" + window.contextRoot + "/cart/add/" + data + "/'><i class='fa fa-cart-plus fa-lg' aria-hidden='true'></i></a>";
+
+                    }
                     return str;
                 }
             }

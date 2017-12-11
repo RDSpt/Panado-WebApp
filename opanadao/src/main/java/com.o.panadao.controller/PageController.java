@@ -2,15 +2,17 @@ package com.o.panadao.controller;
 
 import com.o.opanadaoBackend.dao.*;
 import com.o.opanadaoBackend.dto.*;
+import com.o.panadao.exception.ProductNotFoundException;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.ws.rs.Path;
-
 @Controller
 public class PageController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 	
 	@Autowired
 	private CategoryDAO categoryDAO;
@@ -20,9 +22,12 @@ public class PageController {
 	
 	@RequestMapping(value = {"/", "/home", "/index"}, produces = "text/plain;charset=UTF-8")
 	public ModelAndView index() {
-		
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Home");
+		
+		logger.info("Inside pageController index method - INFO");
+		logger.debug("Inside pageController index method - DEBUG");
+		
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
@@ -39,7 +44,6 @@ public class PageController {
 	@RequestMapping(value = "" +
 			"sobrenos", produces = "text/plain;charset=UTF-8")
 	public ModelAndView sobrenos() {
-		
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Sobre Nós");
 		mv.addObject("userClickSobrenos", true);
@@ -48,7 +52,6 @@ public class PageController {
 	
 	@RequestMapping(value = "contactos", produces = "text/plain;charset=UTF-8")
 	public ModelAndView contactos() {
-		
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Contactos");
 		mv.addObject("userClickContactos", true);
@@ -59,7 +62,6 @@ public class PageController {
 	
 	@RequestMapping(value = "produtos/", produces = "text/plain;charset=UTF-8")
 	public ModelAndView allProducts() {
-		
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Produtos");
 		mv.addObject("categories", categoryDAO.list());
@@ -69,7 +71,6 @@ public class PageController {
 	
 	@RequestMapping(value = "produtos/{id}/", produces = "text/plain;charset=UTF-8")
 	public ModelAndView selectedProduct(@PathVariable("id") int id) {
-		
 		ModelAndView mv = new ModelAndView("page");
 		//fetch single category
 		Category category = null;
@@ -82,24 +83,22 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = "produtos/produto_desc/{id}/", produces = "text/plain;charset=UTF-8")
-	public ModelAndView showSingleProduct(@PathVariable("id") int id){
-		
+	public ModelAndView showSingleProduct(@PathVariable("id") int id) throws ProductNotFoundException {
 		ModelAndView mv = new ModelAndView("page");
+		Product  product           = productDAO.get(id);
 		
-		Product product = productDAO.get(id);
+		if(product == null) throw new ProductNotFoundException();
+		
 		Category categoryOfProduct = categoryDAO.get(product.getCategoryId());
-		product.setViews(product.getViews() +1);
+		product.setViews(product.getViews() + 1);
 		productDAO.update(product);
 		mv.addObject("title", product.getName());
-		mv.addObject("product",product);
-		mv.addObject("productCategory",categoryOfProduct);
-		mv.addObject("userClickShowProduct",true);
-		
+		mv.addObject("product", product);
+		mv.addObject("productCategory", categoryOfProduct);
+		mv.addObject("userClickShowProduct", true);
 		return mv;
 	}
-	
 }
-
 //jdbc:h2:tcp://localhost/~/opanadao
 //sa
 //

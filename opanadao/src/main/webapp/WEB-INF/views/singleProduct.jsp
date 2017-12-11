@@ -26,9 +26,30 @@
                 <hr/>
                 <h4>Price: <strong> ${product.price} €</strong></h4>
                 <hr/>
-                <h6>Qty. Available: ${product.quantity}</h6>
-                <a href="${contextRoot}/car/add/${product.id}/" class="btn btn-sucess"><i class='fa fa-cart-plus fa-lg'
-                                                                                          aria-hidden='true'>Comprar</i></a>
+
+
+                <c:choose>
+                    <c:when test="${product.quantity<1}">
+                        <h6>Qty. Available: <span color="red">Out of Stock!</span></h6>
+                    </c:when>
+                    <c:otherwise>
+                        <h6>Qty. Available: ${product.quantity}</h6>
+                    </c:otherwise>
+                </c:choose>
+
+                <c:choose>
+                    <c:when test="${product.quantity<1}">
+                        <a href="javascript:void(0)" class="btn btn-danger disabled" style="text-decoration: line-through;"><i
+                                class='fa fa-cart-plus fa-lg'
+                                aria-hidden='true'> Comprar</i></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="${contextRoot}/car/add/${product.id}/" class="btn btn-sucess"><i
+                                class='fa fa-cart-plus fa-lg'
+                                aria-hidden='true'> Comprar</i></a>
+                    </c:otherwise>
+                </c:choose>
+
                 <a href="${contextRoot}/produtos/${productCategory.id}/" class="btn btn-sucess">Voltar</a>
             </div>
         </div>

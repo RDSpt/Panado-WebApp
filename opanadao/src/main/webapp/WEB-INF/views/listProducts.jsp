@@ -24,19 +24,18 @@
 
             <%-- List of Project --%>
             <div class="row">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <table id="productListTable" class="table table-striped table-borderd">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                        </table>
-                    </div>
+                <div class="col-xs-12 col-md-12">
+                    <table id="productListTable" class="table table-striped table-borderd">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
