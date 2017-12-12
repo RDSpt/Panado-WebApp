@@ -1,6 +1,7 @@
 package com.o.opanadaoBackend.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -23,15 +24,16 @@ public class Product {
 	@NotBlank(message = "Por favor insira a descrição do Produto!")
 	private String description;
 	
-	@Min(value = 1, message = "A quantidade não pode ser inferior a 1")
+	@Min(value = 0, message = "A quantidade não pode ser inferior a 0")
 	private int quantity;
 	
 	@Column(name = "unit_price")
-	@Min(value = 1,  message = "O preço não pode ser inferior a 1")
+	@Min(value = 1, message = "O preço não pode ser inferior a 1")
 	private double price;
-	@JsonIgnore
+	
 	@Column(name = "is_active")
 	private boolean active;
+	
 	@JsonIgnore
 	@Column(name = "category_id")
 	private int categoryId;
@@ -39,6 +41,9 @@ public class Product {
 	private int purchases;
 	
 	private int views;
+	
+	@Transient
+	private MultipartFile file;
 	// ===== ===== ===== //
 	
 	public Product() {
@@ -140,6 +145,13 @@ public class Product {
 	
 	public void setViews(int views) {
 		this.views = views;
+	}
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 }
 

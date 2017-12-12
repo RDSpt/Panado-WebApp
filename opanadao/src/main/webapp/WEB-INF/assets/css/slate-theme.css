@@ -467,7 +467,7 @@ hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
-    border-top: 1px solid rgba(116, 116, 116,1);
+    border-top: 1px solid rgba(116, 116, 116, 1);
 }
 
 small, .small {
@@ -5087,7 +5087,7 @@ tbody.collapse.show {
 .list-group-item.active {
     z-index: 2;
     color: #fff;
-    background-color: #3e444c;
+    background-color: #5c6065;
     border-color: rgba(0, 0, 0, 0.6)
 }
 

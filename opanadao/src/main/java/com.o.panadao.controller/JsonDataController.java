@@ -1,3 +1,4 @@
+
 package com.o.panadao.controller;
 
 import com.o.opanadaoBackend.dao.ProductDAO;
@@ -21,6 +22,13 @@ public class JsonDataController {
 	public List<Product> getAllProducts() {
 		
 		return productDAO.listActiveProducts();
+	}
+	
+	@RequestMapping("/admin/produtos/")
+	@ResponseBody
+	public List<Product> getAllProductsForAdmin() {
+		
+		return productDAO.list();
 	}
 	
 	@RequestMapping("/produtos/{id}/")

@@ -23,10 +23,10 @@
         <div class="offset-md-2 col-md-8">
             <div class="card">
                 <div class="card-header card-title text-center">
-                    <h4>Gestão de Produtos</h4>
+                    <h4>Adicionar Produtos</h4>
                 </div>
-                <sf:form class="form-horizontal" modelAttribute="product" action="${contextRoot}/gerir/produtos"
-                         method="POST">
+                <sf:form class="form-horizontal" modelAttribute="product" action="${contextRoot}/gerir/adicionarProdutos"
+                         method="POST" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="form-group">
                         <label class="control-label col-md-4" for="name">Nome do Produto:</label>
@@ -58,6 +58,13 @@
                             <sf:input type="number" path="quantity" id="quantity" placeholder="Quantidade"
                                       class="form-control"/>
                             <sf:errors path="quantity" cssClass="help-block" element="em"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="file">Imagem:</label>
+                        <div class="offset-md-4 col-md-8">
+                            <sf:input type="file" path="file" id="file" class="form-control"/>
+                            <sf:errors path="file" cssClass="help-block" element="em"/>
                         </div>
                     </div>
                     <div class="form-group">

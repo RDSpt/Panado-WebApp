@@ -44,17 +44,17 @@
     <div class="content">
         <c:if test="${userClickHome == true}">
             <%@include file="shared/header.jsp" %>
-            <%@include file="home.jsp" %>
+            <%@include file="home/home.jsp" %>
         </c:if>
         <%--  --%>
         <c:if test="${userClickAllProducts == true}">
-            <%@include file="produtos.jsp" %>
+            <%@include file="produtos/produtos.jsp" %>
         </c:if>
         <c:if test="${userClickSelectedProduct == true}">
-            <%@include file="produtos.jsp" %>
+            <%@include file="produtos/produtos.jsp" %>
         </c:if>
         <c:if test="${userClickShowProduct == true}">
-            <%@include file="singleProduct.jsp" %>
+            <%@include file="produtos/singleProduct.jsp" %>
         </c:if>
         <c:if test="${userClickSobrenos == true}">
             <%@include file="sobrenos.jsp" %>
@@ -63,7 +63,7 @@
             <%@include file="contactos.jsp" %>
         </c:if>
         <c:if test="${userClickManageProducts == true}">
-            <%@include file="manageProducts.jsp" %>
+            <%@include file="management/managementPage.jsp" %>
         </c:if>
 
     </div>
@@ -77,6 +77,7 @@
     <script src="${js}/bootstrap.bundle.js"></script>
     <script src="${js}/jquery.dataTables.js"></script>
     <script src="${js}/dataTables.bootstrap4.js"></script>
+    <script src="${js}/bootbox.min.js"></script>
     <script src="${js}/myapp.js"></script>
 </div>
 </body>
