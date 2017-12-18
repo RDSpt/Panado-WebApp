@@ -22,7 +22,6 @@ public class HibernateConfig {
 	
 	@Bean
 	public DataSource getDataSource() {
-		
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(DATABASE_DRIVER);
 		dataSource.setUrl(DATABASE_URL);
@@ -33,7 +32,6 @@ public class HibernateConfig {
 	
 	@Bean
 	public SessionFactory getSessionFactory(DataSource dataSource) {
-		
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
 		builder.addProperties(getHibernateProperties());
 		builder.scanPackages("com.o.opanadaoBackend.dto");
@@ -41,17 +39,20 @@ public class HibernateConfig {
 	}
 	
 	private Properties getHibernateProperties() {
-		
 		Properties properties = new Properties();
-		properties.put("hibernate.dialect", DATABASE_DIALECT);
-		properties.put("hibernate.show_sql", "true");
-		properties.put("hibernate.format_sql", "true");
+		properties.put("hibernate.dialect",
+		               DATABASE_DIALECT);
+		properties.put("hibernate.show_sql",
+		               "true");
+		properties.put("hibernate.format_sql",
+		               "true");
+		properties.put("hibernate.hbm2ddl.auto",
+		               "update");
 		return properties;
 	}
 	
 	@Bean
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
-		
 		return new HibernateTransactionManager(sessionFactory);
 	}
 }

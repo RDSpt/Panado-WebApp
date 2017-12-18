@@ -28,7 +28,7 @@ public class Product {
 	private int quantity;
 	
 	@Column(name = "unit_price")
-	@Min(value = 1, message = "O preço não pode ser inferior a 1")
+	@DecimalMin(value= "0.01", message = "O preço não pode ser inferior a 1")
 	private double price;
 	
 	@Column(name = "is_active")

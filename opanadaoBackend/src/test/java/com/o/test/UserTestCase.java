@@ -9,13 +9,13 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class UserDetailsTestCase {
+public class UserTestCase {
 	
 	private static AnnotationConfigApplicationContext context;
 	
 	private static UserDetailsDAO userDetailsDAO;
 	
-	private UserDetails userDetails;
+	private User user;
 	
 	@BeforeClass
 	public static void init() {
@@ -30,44 +30,44 @@ public class UserDetailsTestCase {
 	@Test
 	public void testAddCategory() {
 		
-		userDetails = new UserDetails();
-		userDetails.setFirst_name("Customer3");
-		userDetails.setLast_name("Customer3");
-		userDetails.setContact_number("11111111");
-		userDetails.setEmail("customer3@customer3.com");
-		userDetails.setRole("CUSTOMER");
-		userDetails.setPassword("Customer3");
-		assertEquals("Sucessfully added to Database", true, userDetailsDAO.add(userDetails));
+		user = new User();
+		user.setFirst_name("Customer3");
+		user.setLast_name("Customer3");
+		user.setContact_number("11111111");
+		user.setEmail("customer3@customer3.com");
+		user.setRole("CUSTOMER");
+		user.setPassword("Customer3");
+		assertEquals("Sucessfully added to Database", true, userDetailsDAO.add(user));
 	}
 	
 	@Test
 	public void testGetCategory() {
 		
-		userDetails = userDetailsDAO.get(4);
-		assertEquals("Succesfully fetched a Single Product from DB", "Customer3", userDetails.getFirst_name());
+		user = userDetailsDAO.get(4);
+		assertEquals("Succesfully fetched a Single Product from DB", "Customer3", user.getFirst_name());
 		
 	}
 	
 	@Test
 	public void testUpdateCategory() {
 		
-		userDetails = userDetailsDAO.get(4);
-		userDetails.setContact_number("111111110");
-		assertEquals("Succesfully updated a Single Product from DB", true, userDetailsDAO.update(userDetails));
+		user = userDetailsDAO.get(4);
+		user.setContact_number("111111110");
+		assertEquals("Succesfully updated a Single Product from DB", true, userDetailsDAO.update(user));
 		
 	}
 	
 	@Test
 	public void testDeleteCategory() {
 		
-		userDetails = userDetailsDAO.get(4);
-		assertEquals("Succesfully updated a Single Product from DB", true, userDetailsDAO.delete(userDetails));
+		user = userDetailsDAO.get(4);
+		assertEquals("Succesfully updated a Single Product from DB", true, userDetailsDAO.delete(user));
 		
 	}
 	
 	@Test
 	public void testListCategory() {
-		List<UserDetails> a = userDetailsDAO.selectActiveList();
+		List<User> a = userDetailsDAO.selectActiveList();
 		a.forEach(user -> System.out.println(user.getFirst_name()));
 		assertEquals("Succesfully fetched a Products from DB", 3, userDetailsDAO.selectActiveList().size());
 	}

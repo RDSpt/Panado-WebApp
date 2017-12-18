@@ -215,7 +215,7 @@ $(function () {
                     bSortable: false,
                     mRender: function (data, type, row) {
                         var str = '';
-                        str += '<a href="'+ window.contextRoot + '/gerir/adicionarProdutos/' + data +'" class="btn btn-warning">';
+                        str += '<a href="' + window.contextRoot + '/gerir/adicionarProdutos/' + data + '" class="btn btn-warning">';
                         str += '<i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
                         return str;
                     }
@@ -251,6 +251,39 @@ $(function () {
                         }
                     });
                 });
+            }
+        });
+    }
+
+    //Validation code for Category
+    var $categoryForm = $("#categoryForm");
+
+    if ($categoryForm.length) {
+        $categoryForm.validate({
+            rules: {
+                name: {
+                    required: true,
+                    minlength: 2
+                },
+                description: {
+                    required: true
+                }
+            },
+            messages: {
+
+                name: {
+                    required: "Por favor adicione o nome da categoria!",
+                    minlength: "O nome da categoria tem que ter pelo menos 2 letras!"
+                },
+                description: {
+                    required: "Por favor adicione uma descrição!"
+                }
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                //add the class of help-block
+                error.addClass("help-block");
+                error.insertAfter(element);
             }
         });
     }

@@ -1,17 +1,16 @@
-CREATE TABLE categoryId (
+CREATE TABLE category (
   id          IDENTITY,
   name        VARCHAR(50),
   description VARCHAR(255),
-  image_url   VARCHAR(50),
   is_active   BOOLEAN,
   CONSTRAINT pk_category_id PRIMARY KEY (id)
 );
 
-INSERT INTO categoryId (name, description, image_url, is_active) VALUES ('Kebab', 'Turkish Sandwich', 'kebab.jpg','true');
-INSERT INTO categoryId (name, description, image_url, is_active) VALUES ('Panado', 'PANADO Sandwich', 'panado.jpg','true');
-INSERT INTO categoryId (name, description, image_url, is_active) VALUES ('Hamburger', 'American Sandwich', 'hamburger.jpg','true');
+INSERT INTO category (name, description, is_active) VALUES ('Kebab', 'Turkish Sandwich', 'true');
+INSERT INTO category (name, description,  is_active) VALUES ('Panado', 'PANADO Sandwich', 'true');
+INSERT INTO category (name, description,  is_active) VALUES ('Hamburger', 'American Sandwich', 'true');
 
-CREATE TABLE user_detail(
+CREATE TABLE user(
   id IDENTITY,
   first_name VARCHAR(50),
   last_name VARCHAR(50),
@@ -23,9 +22,9 @@ CREATE TABLE user_detail(
 CONSTRAINT pk_user_id PRIMARY KEY (id)
 );
 
-Insert into user_detail (first_name, last_name, role, enabled, email, password, contact_number) VALUES ('Admin', 'Admin', 'ADMIN',true, 'admin@admin.com','admin', '000000000');
-Insert into user_detail (first_name, last_name, role, enabled, email, password, contact_number) VALUES ('Customer1', 'Customer1', 'CUSTOMER',true, 'Customer1@Customer1.com','Customer1', '000000001');
-Insert into user_detail (first_name, last_name, role, enabled, email, password, contact_number) VALUES ('Customer2', 'Customer2', 'CUSTOMER',true, 'Customer2@Customer2.com','Customer2', '000000002');
+Insert into user (first_name, last_name, role, enabled, email, password, contact_number) VALUES ('Admin', 'Admin', 'ADMIN',true, 'admin@admin.com','admin', '000000000');
+Insert into user (first_name, last_name, role, enabled, email, password, contact_number) VALUES ('Customer1', 'Customer1', 'CUSTOMER',true, 'Customer1@Customer1.com','Customer1', '000000001');
+Insert into user (first_name, last_name, role, enabled, email, password, contact_number) VALUES ('Customer2', 'Customer2', 'CUSTOMER',true, 'Customer2@Customer2.com','Customer2', '000000002');
 
 Create TABLE product(
   id Identity,
@@ -48,5 +47,3 @@ INSERT into product (code, name, description, unit_price, quantity, is_active, c
 INSERT into product (code, name, description, unit_price, quantity, is_active, category_id) VALUES ('PND002', 'Panado Com Ovo', 'Panado', 2, 30,true, 2);
 INSERT into product (code, name, description, unit_price, quantity, is_active, category_id) VALUES ('HBG001', 'Hamburger Normal', 'Hamburger', 3, 30,true, 3);
 INSERT into product (code, name, description, unit_price, quantity, is_active, category_id) VALUES ('HBG002', 'Hamburger Com Ovo', 'Hamburger', 3.5, 30,true, 3);
-
-

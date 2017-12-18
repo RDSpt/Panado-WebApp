@@ -5,12 +5,12 @@ import com.o.opanadaoBackend.dto.*;
 import java.util.List;
 
 public interface UserDetailsDAO {
-	List<UserDetails> list();
-	List<UserDetails> selectActiveList();
+	List<User> list();
+	List<User> selectActiveList();
 	
-	UserDetails get(int id);
+	User get(int id);
 	
-	boolean add(UserDetails userDetails);
-	boolean update(UserDetails userDetails);
-	boolean delete(UserDetails userDetails);
+	boolean add(User user);
+	boolean update(User user);
+	boolean delete(User user);
 }

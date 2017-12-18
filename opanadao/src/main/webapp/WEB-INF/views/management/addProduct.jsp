@@ -1,21 +1,20 @@
-<%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--springform library--%>
 
-<div class="container">
+<div class="container" style="margin-top: 50px;">
     <br>
     <div class="row">
-
         <div class="col-xs-12 col-md-12">
             <c:if test="${not empty message}">
                 <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&nbsp;&nbsp;&nbsp;&times;</button>
                     <p> ${message} </p>
+                    <button type="button" class="close" data-dismiss="alert">&nbsp;&nbsp;&nbsp;&times;</button>
                 </div>
             </c:if>
             <c:if test="${not empty messageFail}">
                 <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&nbsp;&nbsp;&nbsp;&times;</button>
                     <p> ${messageFail} </p>
+                    <button type="button" class="close" data-dismiss="alert">&nbsp;&nbsp;&nbsp;&times;</button>
                 </div>
             </c:if>
         </div>
@@ -23,57 +22,59 @@
         <div class="offset-md-2 col-md-8">
             <div class="card">
                 <div class="card-header card-title text-center">
-                    <h4>Adicionar Produtos</h4>
+                    <h4>${title}</h4>
                 </div>
-                <sf:form class="form-horizontal" modelAttribute="product" action="${contextRoot}/gerir/adicionarProdutos"
-                         method="POST" enctype="multipart/form-data">
+                <form:form class="form-horizontal" modelAttribute="product"
+                           action="${contextRoot}/gerir/adicionarProdutos"
+                           method="POST" enctype="multipart/form-data">
                 <div class="card-body">
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="name">Nome do Produto:</label>
-                        <div class="offset-md-4 col-md-8">
-                            <sf:input type="text" path="name" id="name" placeholder="Nome do Produto"
-                                      class="form-control"/>
-                            <sf:errors path="name" cssClass="help-block" element="em"/>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-4" for="name">Nome do Produto:</label>
+                        <div class="col-md-8">
+                            <form:input type="text" path="name" id="name" placeholder="Nome do Produto"
+                                        class="form-control"/>
+                            <form:errors path="name" cssClass="help-block" element="em"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="description">Descriçao do Produto:</label>
-                        <div class="offset-md-4 col-md-8">
-                            <sf:textarea rows="4" path="description" id="description"
-                                         placeholder="Descriçao do Produto" class="form-control"/>
-                            <sf:errors path="description" cssClass="help-block" element="em"/>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-4" for="description">Descriçao do Produto:</label>
+                        <div class="col-md-8">
+                            <form:textarea rows="4" path="description" id="description"
+                                           placeholder="Descriçao do Produto" class="form-control"/>
+                            <form:errors path="description" cssClass="help-block" element="em"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="price">Preço:</label>
-                        <div class="offset-md-4 col-md-8">
-                            <sf:input type="number" path="price" id="price" placeholder="Preço"
-                                      class="form-control"/>
-                            <sf:errors path="price" cssClass="help-block" element="em"/>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-4" for="price">Preço:</label>
+                        <div class="col-md-8">
+                            <form:input type="number" path="price" id="price" placeholder="Preço"
+                                        class="form-control"/>
+                            <form:errors path="price" cssClass="help-block" element="em"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="quantity">Quantidade:</label>
-                        <div class="offset-md-4 col-md-8">
-                            <sf:input type="number" path="quantity" id="quantity" placeholder="Quantidade"
-                                      class="form-control"/>
-                            <sf:errors path="quantity" cssClass="help-block" element="em"/>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-4" for="quantity">Quantidade:</label>
+                        <div class="col-md-8">
+                            <form:input type="number" path="quantity" id="quantity" placeholder="Quantidade"
+                                        class="form-control" step="0.01"/>
+                            <form:errors path="quantity" cssClass="help-block" element="em"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="file">Imagem:</label>
-                        <div class="offset-md-4 col-md-8">
-                            <sf:input type="file" path="file" id="file" class="form-control"/>
-                            <sf:errors path="file" cssClass="help-block" element="em"/>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-4" for="file">Imagem:</label>
+                        <div class="col-md-8">
+                            <form:input type="file" path="file" id="file" class="form-control"/>
+                            <form:errors path="file" cssClass="help-block" element="em"/>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-4" for="categoryId">Categoria:</label>
-                        <div class="offset-md-4 col-md-8">
-                            <sf:select class="form-control" id="categoryId"
-                                       path="categoryId" items="${categories}" itemLabel="name"
-                                       itemValue="id"/>
-                            <sf:errors path="categoryId" cssClass="help-block" element="em"/>
+                    <div class="form-group row">
+                        <label class="col-form-label col-md-4" for="categoryId">Categoria:</label>
+                        <div class="col-md-8">
+                            <form:select class="form-control" id="categoryId"
+                                         path="categoryId" items="${categories}" itemLabel="name"
+                                         itemValue="id"/>
+                            <form:errors path="categoryId" cssClass="help-block" element="em"/>
+
                         </div>
                     </div>
                 </div>
@@ -83,14 +84,14 @@
                            class="btn btn-primary"/>
 
                         <%--Hidden Fields--%>
-                    <sf:hidden path="id"/>
-                    <sf:hidden path="code"/>
-                    <sf:hidden path="active"/>
-                    <sf:hidden path="purchases"/>
-                    <sf:hidden path="views"/>
+                    <form:hidden path="id"/>
+                    <form:hidden path="code"/>
+                    <form:hidden path="active"/>
+                    <form:hidden path="purchases"/>
+                    <form:hidden path="views"/>
                 </div>
             </div>
-            </sf:form>
+            </form:form>
         </div>
     </div>
 </div>

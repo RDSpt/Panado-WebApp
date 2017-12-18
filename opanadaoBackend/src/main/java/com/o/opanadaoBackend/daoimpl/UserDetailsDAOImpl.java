@@ -17,29 +17,29 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<UserDetails> list() {
+	public List<User> list() {
 		
-		return sessionFactory.getCurrentSession().createQuery("FROM UserDetails", UserDetails.class).getResultList();
+		return sessionFactory.getCurrentSession().createQuery("FROM UserDetails", User.class).getResultList();
 	}
 	
 	@Override
-	public List<UserDetails> selectActiveList() {
+	public List<User> selectActiveList() {
 		String query= "FROM UserDetails WHERE ENABLED = :enabled";
-		return sessionFactory.getCurrentSession().createQuery(query, UserDetails.class).setParameter("enabled", true)
+		return sessionFactory.getCurrentSession().createQuery(query, User.class).setParameter("enabled", true)
 				.getResultList();
 	}
 	
 	@Override
-	public UserDetails get(int id) {
+	public User get(int id) {
 		
-		return sessionFactory.getCurrentSession().get(UserDetails.class, id);
+		return sessionFactory.getCurrentSession().get(User.class, id);
 	}
 	
 	@Override
-	public boolean add(UserDetails userDetails) {
+	public boolean add(User user) {
 		
 		try {
-			sessionFactory.getCurrentSession().persist(userDetails);
+			sessionFactory.getCurrentSession().persist(user);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -47,10 +47,10 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 	}
 	
 	@Override
-	public boolean update(UserDetails userDetails) {
+	public boolean update(User user) {
 		
 		try {
-			sessionFactory.getCurrentSession().update(userDetails);
+			sessionFactory.getCurrentSession().update(user);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -58,11 +58,11 @@ public class UserDetailsDAOImpl implements UserDetailsDAO {
 	}
 	
 	@Override
-	public boolean delete(UserDetails userDetails) {
+	public boolean delete(User user) {
 		
 		try {
-			userDetails.setEnabled(false);
-			sessionFactory.getCurrentSession().update(userDetails);
+			user.setEnabled(false);
+			sessionFactory.getCurrentSession().update(user);
 			return true;
 		} catch (Exception e) {
 			return false;

@@ -14,8 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import javax.ws.rs.Path;
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -29,19 +27,19 @@ public class ManagementController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ManagementController.class);
 	
-	//Adicionar Produtos
+	/*Adicionar Produtos*/
 	@RequestMapping(value = "/adicionarProdutos", method = RequestMethod.GET)
 	public ModelAndView addProducts(@RequestParam(name = "operation", required = false) String operation) {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("userClickManageProducts", true);
 		mv.addObject("title", "Adicionar Produtos");
-		mv.addObject("adicionar", true);
+		mv.addObject("adicionarProduto", true);
 		Product nProduct = new Product();
 		nProduct.setActive(true);
 		mv.addObject("product", nProduct);
 		if (operation != null) {
 			if (operation.equals("product")) {
-				mv.addObject("message", "Submissão concluida com sucesso!");
+				mv.addObject("message", "Produto submetido com sucesso!");
 			}
 		}
 		return mv;
@@ -72,25 +70,24 @@ public class ManagementController {
 		}
 		else {
 			productDAO.update(mProduct);
+			model.addAttribute("message", mProduct.getName() + " actualizado com sucesso.");
 			return "redirect:/gerir/produtos";
 		}
-		
 		if (!mProduct.getFile().getOriginalFilename().equals("")) {
 			FileUploadUtility.uploadFile(request, mProduct.getFile(), mProduct.getCode());
 		}
-		
-		
 		//Redirect to Same Page
 		return "redirect:/gerir/adicionarProdutos?operation=product";
 	}
 	
 	//Gestão de Produtos
 	@RequestMapping(value = "/produtos")
-	public ModelAndView showManageProducts() {
+	public ModelAndView showManageProducts(@RequestParam(name = "message", required = false) String message) {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("userClickManageProducts", true);
 		mv.addObject("title", "Gerir Produtos");
 		mv.addObject("gerir", true);
+		mv.addObject("message", message);
 		return mv;
 	}
 	
@@ -110,9 +107,9 @@ public class ManagementController {
 	public ModelAndView showEditProducts(@PathVariable(value = "id") int id) {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("userClickManageProducts", true);
-		mv.addObject("title", "Actualizar Produtos");
-		mv.addObject("adicionar", true);
+		mv.addObject("adicionarProduto", true);
 		Product nProduct = productDAO.get(id);
+		mv.addObject("title", "Actualizar \"" + nProduct.getName() + "\"");
 		mv.addObject("product", nProduct);
 		return mv;
 	}
@@ -120,5 +117,36 @@ public class ManagementController {
 	@ModelAttribute("categories")
 	public List<Category> getCategories() {
 		return categoryDAO.list();
+	}
+	
+	/*NEW CATEGORY*/
+	
+	@RequestMapping(value = "/adicionarCategorias", method = RequestMethod.GET)
+	public ModelAndView addCategory(@RequestParam(name = "operation", required = false) String operation) {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("userClickManageProducts", true);
+		mv.addObject("title", "Adicionar Categoria");
+		mv.addObject("adicionarCategoria", true);
+		Product nProduct = new Product();
+		nProduct.setActive(true);
+		mv.addObject("product", nProduct);
+		if (operation != null) {
+			if (operation.equals("category")) {
+				mv.addObject("message", "Categoria submetida com sucesso!");
+			}
+		}
+		return mv;
+	}
+	
+	@ModelAttribute("category")
+	public Category getCategory() {
+		return new Category();
+	}
+	
+	@RequestMapping(value = "/categoria", method = RequestMethod.POST)
+	public String handleCategorySubmission(@ModelAttribute Category category) {
+		//Add new Category
+		categoryDAO.add(category);
+		return "redirect:/gerir/adicionarCategorias?operation=category";
 	}
 }

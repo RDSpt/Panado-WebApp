@@ -23,12 +23,12 @@ public class PageController {
 	@RequestMapping(value = {"/", "/home", "/index"}, produces = "text/plain;charset=UTF-8")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Home");
-		
+		mv.addObject("title",
+		             "Home");
 		logger.info("Inside pageController index method - INFO");
 		logger.debug("Inside pageController index method - DEBUG");
-		
-		mv.addObject("userClickHome", true);
+		mv.addObject("userClickHome",
+		             true);
 		return mv;
 	}
 	
@@ -41,20 +41,23 @@ public class PageController {
 		return mv;
 	}*/
 	
-	@RequestMapping(value = "" +
-			"sobrenos", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "sobrenos", produces = "text/plain;charset=UTF-8")
 	public ModelAndView sobrenos() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Sobre Nós");
-		mv.addObject("userClickSobrenos", true);
+		mv.addObject("title",
+		             "Sobre Nós");
+		mv.addObject("userClickSobrenos",
+		             true);
 		return mv;
 	}
 	
 	@RequestMapping(value = "contactos", produces = "text/plain;charset=UTF-8")
 	public ModelAndView contactos() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Contactos");
-		mv.addObject("userClickContactos", true);
+		mv.addObject("title",
+		             "Contactos");
+		mv.addObject("userClickContactos",
+		             true);
 		return mv;
 	}
 	
@@ -63,9 +66,12 @@ public class PageController {
 	@RequestMapping(value = "produtos/", produces = "text/plain;charset=UTF-8")
 	public ModelAndView allProducts() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Produtos");
-		mv.addObject("categories", categoryDAO.list());
-		mv.addObject("userClickAllProducts", true);
+		mv.addObject("title",
+		             "Produtos");
+		mv.addObject("categories",
+		             categoryDAO.list());
+		mv.addObject("userClickAllProducts",
+		             true);
 		return mv;
 	}
 	
@@ -75,29 +81,48 @@ public class PageController {
 		//fetch single category
 		Category category = null;
 		category = categoryDAO.get(id);
-		mv.addObject("title", category.getName());
-		mv.addObject("category", category);
-		mv.addObject("categories", categoryDAO.list());
-		mv.addObject("userClickSelectedProduct", true);
+		mv.addObject("title",
+		             category.getName());
+		mv.addObject("category",
+		             category);
+		mv.addObject("categories",
+		             categoryDAO.list());
+		mv.addObject("userClickSelectedProduct",
+		             true);
 		return mv;
 	}
 	
 	@RequestMapping(value = "produtos/produto_desc/{id}/", produces = "text/plain;charset=UTF-8")
 	public ModelAndView showSingleProduct(@PathVariable("id") int id) throws ProductNotFoundException {
-		ModelAndView mv = new ModelAndView("page");
-		Product  product           = productDAO.get(id);
-		
-		if(product == null) throw new ProductNotFoundException();
-		
+		ModelAndView mv      = new ModelAndView("page");
+		Product      product = productDAO.get(id);
+		if (product == null) throw new ProductNotFoundException();
 		Category categoryOfProduct = categoryDAO.get(product.getCategoryId());
 		product.setViews(product.getViews() + 1);
 		productDAO.update(product);
-		mv.addObject("title", product.getName());
-		mv.addObject("product", product);
-		mv.addObject("productCategory", categoryOfProduct);
-		mv.addObject("userClickShowProduct", true);
+		mv.addObject("title",
+		             product.getName());
+		mv.addObject("product",
+		             product);
+		mv.addObject("productCategory",
+		             categoryOfProduct);
+		mv.addObject("userClickShowProduct",
+		             true);
 		return mv;
 	}
+	
+	/*FLOWS*/
+	
+	@RequestMapping(value = "register", produces = "text/plain;charset=UTF-8")
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Sobre Nós");
+		mv.addObject("userClickSobrenos", true);
+		return mv;
+	}
+	
+	
+	
 }
 //jdbc:h2:tcp://localhost/~/opanadao
 //sa
