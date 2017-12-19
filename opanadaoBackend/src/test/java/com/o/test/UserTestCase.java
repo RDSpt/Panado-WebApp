@@ -41,6 +41,18 @@ public class UserTestCase {
 	}
 	
 	@Test
+	public void testAddAdminUser(){
+		user = new User();
+		user.setFirst_name("Admin");
+		user.setLast_name("Admin");
+		user.setContact_number("11111111");
+		user.setEmail("Admin@Admin.com");
+		user.setRole("ADMIN");
+		user.setPassword("Admin");
+		assertEquals("Sucessfully added to Database", true, userDetailsDAO.add(user));
+	}
+	
+	@Test
 	public void testGetCategory() {
 		
 		user = userDetailsDAO.get(4);

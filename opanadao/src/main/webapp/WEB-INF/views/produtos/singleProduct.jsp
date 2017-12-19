@@ -36,7 +36,7 @@
                         <h6>Qty. Available: ${product.quantity}</h6>
                     </c:otherwise>
                 </c:choose>
-
+        <security:authorize access="hasAuthority('CUSTOMER')">
                 <c:choose>
                     <c:when test="${product.quantity<1}">
                         <a href="javascript:void(0)" class="btn btn-danger disabled" style="text-decoration: line-through;"><i
@@ -49,7 +49,12 @@
                                 aria-hidden='true'> Comprar</i></a>
                     </c:otherwise>
                 </c:choose>
-
+        </security:authorize>
+                    <security:authorize access="hasAuthority('ADMIN')">
+                        <a href="${contextRoot}/gerir/produtos/${product.id}/" class="btn btn-warning"><i
+                                class='fa fa-pencil-square-o fa-lg'
+                                aria-hidden='true'> Comprar</i></a>
+                    </security:authorize>
                 <a href="${contextRoot}/produtos/${productCategory.id}/" class="btn btn-sucess">Voltar</a>
             </div>
         </div>

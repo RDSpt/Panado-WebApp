@@ -42,6 +42,17 @@ $(function () {
 
     }
 
+    /*CSRF*/
+    var token = $('meta[name="_csrf"]').attr('content');
+    var header = $('meta[name="_csrf_header"]').attr('content');
+    if (token.length > 0 && header.length > 0) {
+        $(document).ajaxSend(function (e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+
+
+        });
+    }
+
 
     /*DATATABLE PRODUCTS*/
     var $table = $('#productListTable');
@@ -57,58 +68,63 @@ $(function () {
         }
 
         $table.DataTable({
-            lengthMenu: [[3, 5, 10, -1], ['3', '5', '10', 'Todos']],
-            pageLength: 5,
-            ajax: {
-                url: jsonUrl,
-                dataSrc: ''
-            },
-            columns: [
-                {
-                    bSortable: false,
-                    data: 'code',
-                    mRender: function (data, type, row) {
-                        return "<img class='dataTableImg' src='" + window.contextRoot + "/resources/images/produtos/" + data + ".jpg'/>"
-                    }
+                lengthMenu: [[3, 5, 10, -1], ['3', '5', '10', 'Todos']],
+                pageLength: 5,
+                ajax: {
+                    url: jsonUrl,
+                    dataSrc: ''
                 },
-                {
-                    data: 'name'
-                },
-
-                {
-                    data: 'price',
-                    mRender: function (data, type, row) {
-                        return data + ' €';
-                    }
-                },
-                {
-                    data: 'quantity',
-                    mRender: function (data, type, row) {
-                        if (data < 1) {
-                            return "<span style='red'> Out of Stock!</span>";
+                columns: [
+                    {
+                        bSortable: false,
+                        data: 'code',
+                        mRender: function (data, type, row) {
+                            return "<img class='dataTableImg' src='" + window.contextRoot + "/resources/images/produtos/" + data + ".jpg'/>"
                         }
-                        return data;
-                    }
-                },
-                {
-                    data: 'id',
-                    bSortable: false,
-                    mRender: function (data, type, row) {
-                        var str = "";
-                        str += " <a class = 'btn btn-primary' href='" + window.contextRoot + "/produtos/produto_desc/" + data + "/'><i class='fa fa-eye fa-lg' aria-hidden='true'></i></a> &nbsp; ";
+                    },
+                    {
+                        data: 'name'
+                    },
 
-                        if (row.quantity < 1) {
-                            str += " <a class = 'btn btn-danger disabled' href='javascript:void(0);'><i class='fa fa-cart-plus fa-lg' aria-hidden='true'></i></a>";
-                        } else {
-
-                            str += " <a class = 'btn btn-primary' href='" + window.contextRoot + "/cart/add/" + data + "/'><i class='fa fa-cart-plus fa-lg' aria-hidden='true'></i></a>";
-
+                    {
+                        data: 'price',
+                        mRender: function (data, type, row) {
+                            return data + ' €';
                         }
-                        return str;
+                    },
+                    {
+                        data: 'quantity',
+                        mRender: function (data, type, row) {
+                            if (data < 1) {
+                                return "<span style='red'> Out of Stock!</span>";
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        data: 'id',
+                        bSortable: false,
+                        mRender: function (data, type, row) {
+                            var str = "";
+                            str += " <a class = 'btn btn-primary' href='" + window.contextRoot + "/produtos/produto_desc/" + data + "/'><i class='fa fa-eye fa-lg' aria-hidden='true'></i></a> &nbsp; ";
+                            if (userRole === 'ADMIN') {
+                                str += " <a class = 'btn btn-warning' href='" + window.contextRoot + "/gerir/produtos/" + data + "/'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>";
+                            } else {
+
+                                if (row.quantity < 1) {
+                                    str += " <a class = 'btn btn-danger disabled' href='javascript:void(0);'><i class='fa fa-cart-plus fa-lg' aria-hidden='true'></i></a>";
+                                } else {
+
+
+                                    str += " <a class = 'btn btn-primary' href='" + window.contextRoot + "/cart/add/" + data + "/'><i class='fa fa-cart-plus fa-lg' aria-hidden='true'></i></a>";
+                                }
+                            }
+                            return str;
+                        }
                     }
-                }
-            ]
-        });
+                ]
+            }
+        );
     }
 
     /*ERROR FADE*/
@@ -255,7 +271,7 @@ $(function () {
         });
     }
 
-    //Validation code for Category
+//Validation code for Category
     var $categoryForm = $("#categoryForm");
 
     if ($categoryForm.length) {
@@ -287,5 +303,40 @@ $(function () {
             }
         });
     }
-});
+    /*LOGIN FORM*/
+//Validation code for login
+    var $loginForm = $("#loginForm");
+
+    if ($loginForm.length) {
+        $loginForm.validate({
+            rules: {
+                username: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true
+                }
+            },
+            messages: {
+
+                username: {
+                    required: "Por favor insira o seu e-mail!",
+                    minlength: "Por favor insira um e-mail valido!"
+                },
+                password: {
+                    required: "Por favor insira a password!"
+                }
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                //add the class of help-block
+                error.addClass("help-block");
+                error.insertAfter(element);
+            }
+        });
+    }
+
+})
+;
 

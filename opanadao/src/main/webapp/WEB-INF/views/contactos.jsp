@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="row">
+<div class="container" style="margin-top: 60px;">
+    <div class="row text-center">
         <h1>Contactos</h1>
         <hr>
     </div>

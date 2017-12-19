@@ -3,7 +3,9 @@ package com.o.test;
 import com.o.opanadaoBackend.dao.*;
 import com.o.opanadaoBackend.dto.*;
 import org.junit.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static org.junit.Assert.*;
 
@@ -25,45 +27,26 @@ public class UserDAOImplTest {
 		userDAO = (UserDAO) context.getBean("userDAO");
 	}
 	
-	/*@Test
-	public void testAddHardCoded() {
-		//Create User
+	@Test
+	public void createAdmin(){
 		user = new User();
-		user.setFirst_name("j");
-		user.setLast_name("unit");
-		user.setEmail("junit@jun.it");
-		user.setContact_number("123456789");
-		user.setRole("CUSTOMER");
-		user.setPassword("1234");
-		//Add User
+		user.setFirst_name("admin");
+		user.setLast_name("admin");
+		user.setEmail("admin@admin.admin");
+		user.setContact_number("000000000");
+		user.setRole("ADMIN");
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		user.setPassword(passwordEncoder.encode("admin"));
 		assertTrue(userDAO.addUser(user));
-		//Create User Address
-		address = new Address();
-		address.setShippingAddress("Avenida da Liberdade");
-		address.setBillingAddress("Avenida da Liberdade");
-		address.setShipSameBilling(true);
-		address.setCity("Lisboa");
-		address.setPostalCode("1900");
-		address.setCountry("Portugal");
-		address.setUserId(user.getId());
-		//Add Address
-		assertTrue(userDAO.addAddress(address));
-		if (user.getRole().equals("CUSTOMER")) {
-			//Create Cart
-			cart = new Cart();
-			cart.setUser(user);
-			//Add Cart
-			assertTrue(userDAO.addCart(cart));
-		}
-	}*/
+	}
 	
 	@Test
 	public void testAddCart() {
 		//Create User
 		user = new User();
-		user.setFirst_name("j");
+		user.setFirst_name("ja");
 		user.setLast_name("unit");
-		user.setEmail("junit@jun.it");
+		user.setEmail("junita@jun.it");
 		user.setContact_number("123456789");
 		user.setRole("CUSTOMER");
 		user.setPassword("1234");

@@ -20,7 +20,7 @@ public class HibernateConfig {
 	static final String DATABASE_USERNAME = "sa";
 	static final String DATABASE_PASSWORD = "";
 	
-	@Bean
+	@Bean("dataSource")
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(DATABASE_DRIVER);
@@ -45,6 +45,8 @@ public class HibernateConfig {
 		properties.put("hibernate.show_sql",
 		               "true");
 		properties.put("hibernate.format_sql",
+		               "true");
+		properties.put("use_sql_comments",
 		               "true");
 		properties.put("hibernate.hbm2ddl.auto",
 		               "update");

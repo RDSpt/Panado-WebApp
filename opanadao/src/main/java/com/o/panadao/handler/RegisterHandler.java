@@ -5,6 +5,7 @@ import com.o.opanadaoBackend.dto.*;
 import com.o.panadao.model.RegisterModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,6 +13,9 @@ public class RegisterHandler {
 	
 	@Autowired
 	UserDAO userDAO;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	public RegisterModel init() {
 		return new RegisterModel();
@@ -32,6 +36,8 @@ public class RegisterHandler {
 			cart.setUser(user);
 			user.setCart(cart);
 		}
+		//encode password
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		//save user
 		userDAO.addUser(user);
 		//get the address
@@ -54,7 +60,7 @@ public class RegisterHandler {
 					                 .build());
 		}
 		//check uniqueness of email
-		if (userDAO.getByEmail(user.getEmail()) == null) {
+		if (userDAO.getByEmail(user.getEmail()) != null) {
 			transitionValue = "failure";
 			error.addMessage(new MessageBuilder()
 					                 .error()

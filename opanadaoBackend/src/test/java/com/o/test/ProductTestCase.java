@@ -29,7 +29,7 @@ public class ProductTestCase {
 	public void testAddProduct(){
 		product = new Product();
 		product.setName("Panado com Kebab");
-		product.setDescription("Panado com kebab sandwich");
+		product.setDescription("Panado com kebab");
 		product.setCategoryId(2);
 		product.setQuantity(30);
 		product.setPrice(3);
@@ -38,14 +38,14 @@ public class ProductTestCase {
 	
 	@Test
 	public void testGetCategory(){
-		product = productDAO.get(7);
+		product = productDAO.get(2);
 		assertEquals("Succesfully fetched a Single Product from DB", "Panado com Kebab", product.getName());
 		
 	}
 	
 	@Test
 	public void testUpdateCategory(){
-		product = productDAO.get(7);
+		product = productDAO.get(2);
 		product.setDescription("Turkish sandwich");
 		assertEquals("Succesfully updated a Single Product from DB", true, productDAO.update(product));
 		

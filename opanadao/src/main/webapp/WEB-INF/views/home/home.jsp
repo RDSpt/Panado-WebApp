@@ -1,6 +1,6 @@
 <div class="container">
 
-    <h1 class="my-4">Welcome to O Panadão</h1>
+    <h1 class="my-4">Bem Vindo ao "O Panadão"</h1>
     <hr/>
     <div class="row">
         <div class="col-lg-6">
@@ -23,7 +23,7 @@
     </div>
     <br>
     <br>
-    <h3>Promotion:</h3>
+    <h3>Promoções:</h3>
     <br>
     <div class="row">
         <div class="col-lg-4 mb-4">
@@ -31,36 +31,36 @@
                 <h4 class="card-header">The EarlyBird</h4>
                 <div class="card-body">
                     <h5>-10%</h5>
-                    <p class="card-text">Come between 4 am and 7 am to get this promotion.</p>
+                    <p class="card-text">Pede o teu snack preferido entre as 4 e as 7 da manhã e aproveita deste desconto.</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <a href="#" class="btn btn-primary">Saber Mais</a>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 mb-4">
             <div class="card h-100">
-                <h4 class="card-header">Xmas Promo</h4>
+                <h4 class="card-header">Promoção de Natal</h4>
                 <div class="card-body">
                     <h5>-15%</h5>
-                    <p class="card-text">In December, get the special Christmas Promo.</p>
+                    <p class="card-text">Em Dezembro, aproveita da nossa promoção de natal.</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <a href="#" class="btn btn-primary">Saber Mais</a>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 mb-4">
             <div class="card h-100">
-                <h4 class="card-header">Card Promo</h4>
+                <h4 class="card-header">Cartão Promoção</h4>
                 <div class="card-body">
-                    <p class="card-text">Do you have our newly PanadãoCard?</p>
+                    <p class="card-text">Tens o nosso cartão PanadãoCard?</p>
                     <img src="${images}/panadaoCard.png" class="img responsive" style="max-height: 100px"/>
 
-                    <p class="card-text">Ask for the current Promo.</p>
+                    <p class="card-text">Pergunta pela promoção do momento.</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <a href="#" class="btn btn-primary">Saber Mais</a>
                 </div>
             </div>
         </div>

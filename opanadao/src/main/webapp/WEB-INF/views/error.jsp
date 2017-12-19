@@ -45,7 +45,7 @@
 
 
     <!-- Page Content -->
-    <div class="content">
+    <div class="content" style="margin-top: 60px;">
         <div class="container">
             <div class="coll-xs-12">
                 <div class="jumbotron">

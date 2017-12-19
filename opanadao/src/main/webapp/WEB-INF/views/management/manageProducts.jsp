@@ -14,20 +14,18 @@
         </div>
         <h3>Products</h3>
         <hr>
-        <table id="adminProductsTable" class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>&#160;</th>
-                <th>Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Active</th>
-                <th>Edit</th>
-            </tr>
-            </thead>
-
-        </table>
     </div>
-</div>
+    <table id="adminProductsTable" class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>&#160;</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Active</th>
+            <th>Edit</th>
+        </tr>
+        </thead>
+    </table>
 </div>

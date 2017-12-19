@@ -13,6 +13,9 @@
         <javaee.version>8.0</javaee.version>
         <junit.version>4.12</junit.version>
         <spring.version>5.0.2.RELEASE</spring.version>
+        <spring.security.version>5.0.0.RELEASE</spring.security.version>
+        <hibernate.version>5.2.12.Final</hibernate.version>
+        <jackson.version>2.9.2</jackson.version>
     </properties>
 
     <dependencies>
@@ -61,36 +64,11 @@
             <version>1.2</version>
         </dependency>
         <!-- SLF4J Logging -->
-        <!--<dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.25</version>
-        </dependency>-->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
-            <exclusions>
-                <exclusion>
-                    <!-- Defined below -->
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
+            <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.25</version>
         </dependency>
-
     </dependencies>
     <build>
         <plugins>

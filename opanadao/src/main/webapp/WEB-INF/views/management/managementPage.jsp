@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="margin-top: 56px;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-nav" style="margin-top: 60px;">
     <div class="container">
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
