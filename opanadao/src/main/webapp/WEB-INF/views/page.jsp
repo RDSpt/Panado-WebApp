@@ -71,6 +71,9 @@
         <c:if test="${userClickShowCart == true}">
             <%@include file="cart/cart.jsp" %>
         </c:if>
+        <c:if test="${userClickShipping == true}">
+            <%@include file="cart/shipping.jsp" %>
+        </c:if>
 
     </div>
 

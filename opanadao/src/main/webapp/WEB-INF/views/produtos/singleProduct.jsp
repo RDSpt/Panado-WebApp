@@ -44,7 +44,7 @@
                                 aria-hidden='true'> Comprar</i></a>
                     </c:when>
                     <c:otherwise>
-                        <a href="${contextRoot}/car/add/${product.id}/" class="btn btn-sucess"><i
+                        <a href="${contextRoot}/car/${product.id}/add/" class="btn btn-sucess"><i
                                 class='fa fa-cart-plus fa-lg'
                                 aria-hidden='true'> Comprar</i></a>
                     </c:otherwise>

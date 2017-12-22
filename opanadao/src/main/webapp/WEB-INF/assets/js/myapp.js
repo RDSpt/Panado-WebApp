@@ -119,7 +119,7 @@ $(function () {
                                 } else {
 
 
-                                    str += " <a class = 'btn btn-primary' href='" + window.contextRoot + "/cart/add/" + data + "/'><i class='fa fa-cart-plus fa-lg' aria-hidden='true'></i></a>";
+                                    str += " <a class = 'btn btn-primary' href='" + window.contextRoot + "/cart/" + data + "/add/'><i class='fa fa-cart-plus fa-lg' aria-hidden='true'></i></a>";
                                 }
                             }
                             return str;

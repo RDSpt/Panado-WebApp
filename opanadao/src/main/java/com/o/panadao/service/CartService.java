@@ -1,6 +1,6 @@
 package com.o.panadao.service;
 
-import com.o.opanadaoBackend.dao.CartLineDAO;
+import com.o.opanadaoBackend.dao.*;
 import com.o.opanadaoBackend.dto.*;
 import com.o.panadao.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,8 @@ public class CartService {
 	
 	@Autowired
 	private CartLineDAO cartLineDAO;
+	@Autowired
+	private ProductDAO productDAO;
 	
 	@Autowired
 	private HttpSession httpSession;
@@ -33,7 +35,6 @@ public class CartService {
 		double oldTotal = cartLine.getTotal();
 		Product product = cartLine.getProduct();
 		// check if that much quantity is available or not
-		System.out.println("Product Quantity: "+product.getQuantity()+" count: "+count);
 		if (product.getQuantity() < count) {
 			return "result=unavailable";
 		}
@@ -47,6 +48,51 @@ public class CartService {
 		cart.setTotal(cart.getTotal() - oldTotal + cartLine.getTotal());
 		cartLineDAO.updateCart(cart);
 		return "result=updated";
+	}
+	public String deleteCartLine(int cartLineId) {
+		CartLine cartLine = cartLineDAO.get(cartLineId);
+		if(cartLine == null){
+			return "result=error";
+		}else{
+			//Update cart
+			Cart cart = this.getCart();
+			cart.setTotal(cart.getTotal()-cartLine.getTotal());
+			cart.setCartLine(cart.getCartLine()-1);
+			cartLineDAO.updateCart(cart);
+			//remove cartLine
+			cartLineDAO.delete(cartLine);
+			return "result=deleted";
+		}
+	}
+	public String addCartLine(int productId) {
+		String response = null;
+		
+		Cart cart = this.getCart();
+		
+		CartLine cartLine = cartLineDAO.getByCartAndProduct(cart.getId(), productId);
+		if(cartLine == null){
+			//add new cartLine
+			cartLine = new CartLine();
+			//fetch product
+			Product product = productDAO.get(productId);
+			cartLine.setCartId(cart.getId());
+			cartLine.setProduct(product);
+			cartLine.setBuyingPrice(product.getPrice());
+			cartLine.setProductCount(1);
+			cartLine.setTotal(product.getPrice());
+			cartLine.setAvailable(true);
+			
+			cartLineDAO.add(cartLine);
+			cart.setCartLine(cart.getCartLine()+1);
+			cart.setTotal(cart.getTotal()+cartLine.getTotal());
+			cartLineDAO.updateCart(cart);
+			response = "result=added";
+		}else{
+		
+		}
+		
+		
+		return response;
 	}
 }
 

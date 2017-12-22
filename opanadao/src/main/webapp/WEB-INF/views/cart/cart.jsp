@@ -13,7 +13,7 @@
             <div class="card-header bg-dark text-light">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 Shipping cart
-                <a href="" class="btn btn-outline-info btn-sm pull-right">Continiu shopping</a>
+                <a href="${contextRoot}/produtos/" class="btn btn-outline-info btn-sm pull-right">Continuar a ver</a>
                 <div class="clearfix"></div>
             </div>
             <div class="card-body">
@@ -52,9 +52,9 @@
                                         class="btn btn-outline-info btn-xs">
                                     <i class="fa fa-refresh" aria-hidden="true"></i>
                                 </button>
-                                <button type="button" class="btn btn-outline-danger btn-xs">
+                                <a href ="${contextRoot}/cart/${cartLine.id}/delete" type="button" class="btn btn-outline-danger btn-xs">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
+                                </a>
                             </div>
                             <div class="row">
                                 <h6>Total:<strong>${cartLine.total} €</strong></h6>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div class="pull-right" style="margin: 10px">
-                    <a href="" class="btn btn-success pull-right">Checkout</a>
+                    <a href="${contextRoot}/cart/encomendar" class="btn btn-success pull-right">Encomendar</a>
                     <div class="pull-right" style="margin: 5px">
                         Total: <b>${userModel.cart.total} €</b>
                     </div>
