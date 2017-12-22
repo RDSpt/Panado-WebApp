@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	@Override
 	public User getByEmail(String email) {
-		if(email.isEmpty()){
+		if (email.isEmpty()) {
 			return null;
 		}
 		String selectQuery = "FROM User WHERE email = :email";
@@ -46,7 +46,7 @@ public class UserDAOImpl implements UserDAO {
 			return sessionFactory.getCurrentSession().createQuery(selectQuery,
 			                                                      User.class).setParameter("email",
 			                                                                               email)
-					.getSingleResult();
+			                     .getSingleResult();
 		} catch (Exception e) {
 			return null;
 		}
@@ -67,12 +67,12 @@ public class UserDAOImpl implements UserDAO {
 		String selectQuery = "FROM Address WHERE user = :user AND billing = :billing";
 		try {
 			return sessionFactory.getCurrentSession()
-					.createQuery(selectQuery,
-					             Address.class)
-					.setParameter("user",
-					              user)
-					.setParameter("billing",
-					              true).getSingleResult();
+			                     .createQuery(selectQuery,
+			                                  Address.class)
+			                     .setParameter("user",
+			                                   user)
+			                     .setParameter("billing",
+			                                   true).getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -83,26 +83,16 @@ public class UserDAOImpl implements UserDAO {
 		String selectQuery = "FROM Address WHERE user = :user AND shipping = :shipping";
 		try {
 			return sessionFactory.getCurrentSession()
-					.createQuery(selectQuery,
-					             Address.class)
-					.setParameter("user",
-					              user)
-					.setParameter("shipping",
-					              true)
-					.getResultList();
+			                     .createQuery(selectQuery,
+			                                  Address.class)
+			                     .setParameter("user",
+			                                   user)
+			                     .setParameter("shipping",
+			                                   true)
+			                     .getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}
-	}
-	@Override
-	public boolean updateCart(Cart cart) {
-		try {
-			sessionFactory.getCurrentSession().update(cart);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
 		}
 	}
 }

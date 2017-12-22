@@ -36,13 +36,13 @@
                     </li>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
-                    <li class="dropdown">
+                    <li class="dropdown" >
 
                         <a href="javascript:void(0)" class="btn btn-default dropdown-toggle" id="dropdownMenu1"
                            data-toggle="dropdown">${userModel.fullName} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" >
                             <security:authorize access="hasAuthority('CUSTOMER')">
-                                <li><a href="${contextRoot}/cart"><i class="fa fa-shopping-cart fa-lg"
+                                <li id="cart"><a href="${contextRoot}/cart/show"><i class="fa fa-shopping-cart fa-lg"
                                                                      aria-hidden="true"></i><span
                                         class="badge">${userModel.cart.cartLine}</span> ${userModel.cart.total}
                                     €</a>

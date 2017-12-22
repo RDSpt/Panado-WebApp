@@ -61,17 +61,7 @@ public class UserDAOImplTest {
 		assertTrue(userDAO.addUser(user));
 	}
 	
-	@Test
-	public void testUpdateCart() {
-		user = userDAO.getByEmail("junit@jun.it");
-		cart = user.getCart();
-		System.out.println("===================================");
-		System.out.println(cart.toString());
-		System.out.println("===================================");
-		cart.setTotal(20);
-		cart.setCartLine(2);
-		assertTrue(userDAO.updateCart(cart));
-	}
+	
 	
 	@Test
 	public void testAddAddress() {
